@@ -3,8 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cheerio": "^1.0.0-rc.1",
+    "express": "^4.15.3",
+    "material-ui": "^0.18.1",
+    "mongodb": "^2.2.27",
+    "mongojs": "^2.4.0",
+    "mongoose": "^4.10.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "request": "^2.81.0"
   },
   "devDependencies": {
     "react-scripts": "1.0.7"
