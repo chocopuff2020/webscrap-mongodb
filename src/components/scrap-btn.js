@@ -2,18 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import ActionAndroid from 'material-ui/svg-icons/action/android';
+import FontIcon from 'material-ui/FontIcon';
 
-
-class TestComponent extends React.Component{
-  render(){
-    console.log(this.props)
-    return <div/>
-  }
-}
 
 var ScrapBtn = React.createClass({
-  // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
   getInitialState: function() {
       return({
           scrappedData:[]
@@ -49,10 +43,10 @@ var ScrapBtn = React.createClass({
                 <FlatButton label="Save" />
               </CardActions>
               <CardText expandable={true}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-                Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-                Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. 
               </CardText>
           </Card>
         )
@@ -60,7 +54,7 @@ var ScrapBtn = React.createClass({
 
     return (
       <div>
-          <button onClick={this.handleClick}> Click ME!
+          <button className="btn btn-danger" onClick={this.handleClick}> All Articles!
           </button>
           <ul> {scrappedData} </ul>
       </div>
@@ -70,4 +64,3 @@ var ScrapBtn = React.createClass({
 
 export default ScrapBtn;
 
-// ReactDOM.render(<ScrapBtn />, document.getElementById('results'));

@@ -36,7 +36,9 @@ app.use(function(req, res, next) {
 
 
 
-
+/*===============================
+=            ROUTING            =
+===============================*/
 // Database configuration
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
@@ -87,6 +89,11 @@ app.get("/scrape", function(req, res) {
   });
   res.send("Scrape Complete");
 });
+
+
+/*=====  End of ROUTING  ======*/
+
+
 
 
 
