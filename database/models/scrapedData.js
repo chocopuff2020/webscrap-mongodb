@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
-const CommentSchema = require('./comment');
+
+// const CommentSchema = require('./comment');
 const Schema = mongoose.Schema;
 
 const ScrappedDataSchema = new Schema({
-    title: title,
-    link: link
+    title: String,
+    link: String
 });
 
 const ScrappedData = mongoose.model('scrapedData', ScrappedDataSchema);
