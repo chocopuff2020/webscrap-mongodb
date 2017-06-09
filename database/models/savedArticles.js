@@ -1,12 +1,11 @@
 const mongoose = require('mongoose');
-const CommentSchema = require('./comment');
 const Schema = mongoose.Schema;
 
-const savedArticlesSchema = new Schema({
-    title: title,
-    link: link
+const SavedArticlesSchema = new Schema({
+    title: String,
+    link: String
 });
 
-const savedArticles = mongoose.model('savedArticles', savedArticlesSchema);
+const SavedArticles = mongoose.model('SavedArticles', SavedArticlesSchema);
 
-module.exports = savedArticles;
+module.exports = SavedArticles;

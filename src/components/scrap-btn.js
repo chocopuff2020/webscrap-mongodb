@@ -5,12 +5,13 @@ import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import ActionAndroid from 'material-ui/svg-icons/action/android';
 import FontIcon from 'material-ui/FontIcon';
-
+// import SaveButton from './saved-btn'
 
 var ScrapBtn = React.createClass({
   getInitialState: function() {
       return({
-          scrappedData:[]
+          scrappedData:[],
+          savedArticles:[]
       })
   },
 
@@ -29,7 +30,7 @@ var ScrapBtn = React.createClass({
 
   handleSaveClick: (data) => (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log(JSON.stringify(data));
     fetch('http://localhost:8080/savedArticles', {
         mode:'no-cors',
         method: 'post',
@@ -37,13 +38,15 @@ var ScrapBtn = React.createClass({
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
-        body: 'json=' + encodeURIComponent(JSON.stringify(data.json))
+        body:JSON.stringify(data)
     })
-    .then(function (response) {
-        return response.json();
+    .then(json => {
+          this.setState({
+              savedArticles: json
+          });
     })
     .then(function (result) {
-        alert(result);
+        alert('Successful posted!');
     })
     .catch (function (error) {
         console.log('Request failed', error);
@@ -54,7 +57,6 @@ var ScrapBtn = React.createClass({
 
   render() {
     var scrappedData = this.state.scrappedData;
-    console.log(scrappedData[0]);
     scrappedData = scrappedData.map((scrappedData, idx) =>
         (
           <Card key={idx} className="single-Article">
@@ -66,7 +68,7 @@ var ScrapBtn = React.createClass({
               />
               <CardActions>
                 <FlatButton label="Read More" href={scrappedData.link} />
-                <FlatButton label="Save" onClick={this.handleSaveClick(scrappedData)} />
+                <FlatButton label="Save" onClick={this.handleSaveClick(scrappedData)} savedArticles={this.state.savedArticles} />
               </CardActions>
               <CardText expandable={true}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
