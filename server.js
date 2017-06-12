@@ -11,6 +11,7 @@ var logger = require("morgan");
 
 var ScrappedData = require('./database/models/scrapedData')
 var SavedArticles = require('./database/models/savedArticles')
+var Notes = require('./database/models/Notes')
 
 // Initialize Express
 var app = express();
@@ -47,6 +48,8 @@ app.use(function(req, res, next) {
 /*===========================================
 =            MONGOOSE CONNECTION            =
 ===========================================*/
+mongoose.Promise = Promise;
+
 mongoose.connect("mongodb://localhost:27017/scraper");
 var db = mongoose.connection;
 db.on("error", function(err) {
@@ -127,6 +130,47 @@ app.get("/savedArticles", (req,res) => {
     }
   });
 })
+
+app.post("/addNotes/:id", function(req, res) {
+  console.log(req.params.id);
+  console.log(req.body);
+  var newNote = new Notes({ notes: `${req.body}` });
+
+  newNote.save(function(error, doc) {
+    console.log(doc.notes);
+    if (error) {
+      console.log(error // Otherwise
+      );
+    } else {
+      SavedArticles.findOneAndUpdate({
+        "_id": req.params.id
+      },{ $push : {
+        "notes": doc._id
+      }})
+        .exec(function(err, doc) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(doc);
+        }
+      });
+    }
+  });
+});
+
+
+app.get("/addNotes/:id", function(req, res) {
+  SavedArticles.find({})
+    .populate("Notes")
+    .exec(function(error, doc) {
+      if (error) {
+        res.send(error);
+      }
+      else {
+        res.send(doc);
+      }
+    });
+});
 
 
 

@@ -43,3 +43,9 @@
 /*  margin-top:1%;*/
   margin-bottom: 5%;
 }
+
+.text-area {
+  margin-top: 20px;
+  padding:5px;
+  width: 90%;
+}

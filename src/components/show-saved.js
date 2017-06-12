@@ -3,7 +3,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
-
+import NoteBtn from './Note-btn';
 
 var ShowSavedBtn = React.createClass({
   getInitialState: function() {
@@ -31,7 +31,7 @@ var ShowSavedBtn = React.createClass({
     var savedArticles = this.state.savedArticles;
     savedArticles = savedArticles.map((savedArticles, idx) =>
         (
-          <Card key={idx} className="single-Article">
+          <Card key={idx} id="article" className="single-Article" data-id={savedArticles._id}>
               <CardHeader
                 title={savedArticles.title}
                 subtitle={savedArticles.link}
@@ -39,7 +39,7 @@ var ShowSavedBtn = React.createClass({
                 showExpandableButton={true}
               />
               <CardActions>
-                <FlatButton label="Read More" href={savedArticles.link} />
+                <NoteBtn />
               </CardActions>
               <CardText expandable={true}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

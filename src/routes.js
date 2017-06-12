@@ -2,7 +2,7 @@ import React from 'react';
 import { Router, Route } from 'react-router';
 
 import App from './App.js';
-import Save from './components/SavePage';
+import Save from './components/show-saved';
 
 const Routes = (props) => (
   <Router {...props}>
