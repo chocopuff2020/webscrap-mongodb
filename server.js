@@ -103,10 +103,10 @@ app.get("/scrape", function(req, res) {
 });
 
 app.post("/savedArticles", (req, res)=> {
-  console.log(req.body);
+  var data = JSON.parse(req.body)
   SavedArticles.create({
-    title: req.body.title,
-    link: req.body.req
+    title: data.title,
+    link: data.link
   }, function(err) {
     if (err) {
       console.log(err);
