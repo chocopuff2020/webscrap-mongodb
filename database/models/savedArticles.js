@@ -9,3 +9,6 @@ const SavedArticlesSchema = new Schema({
 const SavedArticles = mongoose.model('SavedArticles', SavedArticlesSchema);
 
 module.exports = SavedArticles;
+
+
+// onClick={this.handleSaveClick(scrappedData)}

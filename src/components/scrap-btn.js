@@ -28,6 +28,7 @@ var ScrapBtn = React.createClass({
       });
   },
 
+
   handleSaveClick: (data) => (e) => {
     e.preventDefault();
     console.log(JSON.stringify(data));
@@ -68,7 +69,7 @@ var ScrapBtn = React.createClass({
               />
               <CardActions>
                 <FlatButton label="Read More" href={scrappedData.link} />
-                <FlatButton label="Save" onClick={this.handleSaveClick(scrappedData)} savedArticles={this.state.savedArticles} />
+                <FlatButton label="Save" onClick={this.handleSaveClick(scrappedData)} />
               </CardActions>
               <CardText expandable={true}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
@@ -82,7 +83,7 @@ var ScrapBtn = React.createClass({
 
     return (
       <div>
-          <button className="btn btn-danger btn1" onClick={this.handleClick}> Scrape Articles
+          <button className="btn btn-danger btn2" onClick={this.handleClick}> Scrape Articles
           </button>
           <ul> {scrappedData} </ul>
       </div>

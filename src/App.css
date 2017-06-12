@@ -35,5 +35,11 @@
   display:block;
   margin: 0 auto;
   margin-top: 7%;
+  margin-bottom:2%;
+}
+.btn2 {
+  display:block;
+  margin: 0 auto;
+/*  margin-top:1%;*/
   margin-bottom: 5%;
 }
