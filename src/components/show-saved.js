@@ -39,7 +39,7 @@ var ShowSavedBtn = React.createClass({
                 showExpandableButton={true}
               />
               <CardActions>
-                <NoteBtn />
+                <NoteBtn articleId={savedArticles._id} />
               </CardActions>
               <CardText expandable={true}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

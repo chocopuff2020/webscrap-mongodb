@@ -14,7 +14,7 @@ var NoteBtn = React.createClass({
 
   handleClick: function() {
     let textNotes = document.getElementById('exampleTextarea').value;
-    let articleId = document.getElementById('article').getAttribute('data-id');
+    const articleId = this.props.articleId;
     // console.log(textNotes);
     // e.preventDefault();
     console.log(JSON.stringify(textNotes));

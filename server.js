@@ -137,7 +137,8 @@ app.post("/addNotes/:id", function(req, res) {
   var newNote = new Notes({ notes: `${req.body}` });
 
   newNote.save(function(error, doc) {
-    console.log(doc.notes);
+    console.log(req.params);
+    console.log(JSON.parse(doc.notes));
     if (error) {
       console.log(error // Otherwise
       );
@@ -160,19 +161,21 @@ app.post("/addNotes/:id", function(req, res) {
 
 
 app.get("/addNotes/:id", function(req, res) {
-  SavedArticles.find({})
+  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
+  SavedArticles.findOne({"_id": req.params.id})
+  // ..and populate all of the notes associated with it
     .populate("Notes")
+  // now, execute our query
     .exec(function(error, doc) {
-      if (error) {
-        res.send(error);
-      }
-      else {
-        res.send(doc);
-      }
-    });
+    // Log any errors
+    if (error) {
+      console.log(error // Otherwise, send the doc to the browser as a json object
+      );
+    } else {
+      res.json(doc);
+    }
+  });
 });
-
-
 
 
 //============================================================================//
