@@ -4,21 +4,23 @@ import {Card, CardActions, CardHeader, CardText} from 'material-ui/Card';
 import FontIcon from 'material-ui/FontIcon';
 import FlatButton from 'material-ui/FlatButton';
 
-
+// ======================================
 var NoteBtn = React.createClass({
   getInitialState: function() {
       return({
-          textNotes:[]
+          textNotes:""
       })
   },
 
   handleClick: function() {
-    let textNotes = document.getElementById('exampleTextarea').value;
+    var textNotes = document.getElementById('exampleTextarea').value;
     const articleId = this.props.articleId;
-    // console.log(textNotes);
-    // e.preventDefault();
-    console.log(JSON.stringify(textNotes));
-    console.log(JSON.stringify(articleId));
+    textNotes = JSON.stringify(textNotes);
+
+    this.setState({
+        textNotes:{textNotes}
+    });
+    // console.log(this.state.textNotes);
 
     fetch(`http://localhost:8080/addNotes/${articleId}`, {
         mode:'no-cors',
@@ -27,34 +29,31 @@ var NoteBtn = React.createClass({
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
         },
-        body:JSON.stringify(textNotes)
+        body:textNotes
     })
-    .then(json => {
-          this.setState({
-              textNotes: json
-          });
-    })
+    // .then(json => {
+    //       console.log(json);
+    //       this.setState({
+    //           textNotes: json
+    //       });
+    // })
     .then(function (result) {
         alert('Successful posted!');
     })
     .catch (function (error) {
         console.log('Request failed', error);
     });
+
   },
 
 
 
   render() {
-    // var textNotes = this.state.textNotes;
-    // textNotes = textNotes.map((textNotes, idx) =>
-    //     (
-    //       <Card key={idx} className="single-Article">
-    //           <CardText expandable={true}>
-    //             {textNotes}
-    //           </CardText>
-    //       </Card>
-    //     )
-    // )
+    var textNotes = this.state.textNotes
+    console.log(this.state.textNotes);
+        // (
+        //   <ul> {textNotes} </ul>
+        // )
 
     return (
       <div>

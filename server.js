@@ -132,12 +132,12 @@ app.get("/savedArticles", (req,res) => {
 })
 
 app.post("/addNotes/:id", function(req, res) {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   console.log(req.body);
   var newNote = new Notes({ notes: `${req.body}` });
 
   newNote.save(function(error, doc) {
-    console.log(req.params);
+    // console.log(req.params.id);
     console.log(JSON.parse(doc.notes));
     if (error) {
       console.log(error // Otherwise
@@ -146,13 +146,13 @@ app.post("/addNotes/:id", function(req, res) {
       SavedArticles.findOneAndUpdate({
         "_id": req.params.id
       },{ $push : {
-        "notes": doc._id
+        "notes": doc._id,
       }})
         .exec(function(err, doc) {
         if (err) {
           console.log(err);
         } else {
-          res.send(doc);
+          res.send(doc.notes);
         }
       });
     }
@@ -161,22 +161,27 @@ app.post("/addNotes/:id", function(req, res) {
 
 
 app.get("/addNotes/:id", function(req, res) {
-  // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
   SavedArticles.findOne({"_id": req.params.id})
-  // ..and populate all of the notes associated with it
     .populate("Notes")
-  // now, execute our query
     .exec(function(error, doc) {
-    // Log any errors
     if (error) {
-      console.log(error // Otherwise, send the doc to the browser as a json object
-      );
+      console.log(error);
     } else {
       res.json(doc);
     }
   });
 });
 
+app.get("/Notes", function(req, res) {
+  Notes.find({})
+    .exec(function(error, doc) {
+    if (error) {
+      console.log(error);
+    } else {
+      res.json(doc);
+    }
+  });
+});
 
 //============================================================================//
 // Listen on port 8080
