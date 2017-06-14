@@ -132,12 +132,10 @@ app.get("/savedArticles", (req,res) => {
 })
 
 app.post("/addNotes/:id", function(req, res) {
-  // console.log(req.params.id);
   console.log(req.body);
   var newNote = new Notes({ notes: `${req.body}` });
 
   newNote.save(function(error, doc) {
-    // console.log(req.params.id);
     console.log(JSON.parse(doc.notes));
     if (error) {
       console.log(error // Otherwise

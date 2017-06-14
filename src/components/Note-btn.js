@@ -18,9 +18,8 @@ var NoteBtn = React.createClass({
     textNotes = JSON.stringify(textNotes);
 
     this.setState({
-        textNotes:{textNotes}
+        textNotes:[]
     });
-    // console.log(this.state.textNotes);
 
     fetch(`http://localhost:8080/addNotes/${articleId}`, {
         mode:'no-cors',
@@ -32,7 +31,6 @@ var NoteBtn = React.createClass({
         body:textNotes
     })
     // .then(json => {
-    //       console.log(json);
     //       this.setState({
     //           textNotes: json
     //       });
@@ -44,17 +42,27 @@ var NoteBtn = React.createClass({
         console.log('Request failed', error);
     });
 
+    document.getElementById('exampleTextarea').value = " ";
+
   },
 
 
 
   render() {
-    var textNotes = this.state.textNotes
-    console.log(this.state.textNotes);
-        // (
-        //   <ul> {textNotes} </ul>
-        // )
-
+    // var textNotes = this.state.textNotes;
+    // console.log(textNotes);
+    // textNotes = textNotes.map((textNotes, idx) =>
+    //     (
+    //       <Card key={idx} className="single-Article">
+    //           <CardText expandable={true}>
+    //             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    //             tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    //             quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    //             consequat.
+    //           </CardText>
+    //       </Card>
+    //     )
+    // )
     return (
       <div>
           <div className="form-group">
@@ -62,6 +70,7 @@ var NoteBtn = React.createClass({
           </div>
           <button className="btn btn-primary" onClick={this.handleClick}> Add Notes </button>
       </div>
+
     )
   }
 });
