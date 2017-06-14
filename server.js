@@ -121,7 +121,7 @@ app.post("/savedArticles", (req, res)=> {
 });
 
 app.get("/savedArticles", (req,res) => {
-  SavedArticles.find({}).exec((err, doc) => {
+  SavedArticles.find({}).populate('notes').exec((err, doc) => {
     if (err) {
       console.log(err);
     }
