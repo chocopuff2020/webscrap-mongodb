@@ -17,7 +17,7 @@ var ScrapBtn = React.createClass({
 
   handleClick: function(e) {
       e.preventDefault();
-      // fetch('http://localhost:8080/scrape');
+      fetch('http://localhost:8080/scrape');
       fetch('http://localhost:8080/all').then(function(data) {
           return data.json();
       }).then(json => {
